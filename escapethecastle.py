@@ -25,9 +25,9 @@ print(f"Has Key: {hasKey}")
 print(f"\n{playerName}, you wake up in a dimly lit room.")
 print("Your adventure begins now. What will you do?")
 
-# ==========================================
-# ESCAPE THE CASTLE - SCENE 1: THE CELL
-# ==========================================
+# # ==========================================
+# # ESCAPE THE CASTLE - SCENE 1: THE CELL
+# # ==========================================
  
 # Introduce the scene to the player
 print("You wake up in a dimly lit room, as daylight filters through the bars, you see a door, a window and an old bed.")
@@ -54,9 +54,9 @@ else:
     print("This item doesn't seem to hide anything.")
 
 
-# ==========================================
-# ESCAPE THE CASTLE - SCENE 2: THE CORRIDOR
-# ==========================================
+# # ==========================================
+# # ESCAPE THE CASTLE - SCENE 2: THE CORRIDOR
+# # ==========================================
 
 # Create a list to store the player's inventory
 # We are assuming the player already found the Iron Key
@@ -82,3 +82,58 @@ elif choice == "no":
     print("You decide to leave the door alone and continue down the corridor.")
 
 print(f"\n Your inventory: {inventory}")
+
+
+# ==========================================
+# ESCAPE THE CASTLE - SCENE 3: THE ROOM
+# ==========================================
+
+def encounter(creature):
+ 
+    print(f"\nA {creature} appears!")
+ 
+    
+    if creature == "Guard":
+        print("The guard draws their sword!")
+ 
+    elif creature == "Ghost":
+        print("The ghost floats towards you!")
+    elif creature == "draugr":
+        print("the draugr wakes up and slowly walks towards you")
+
+
+encounter("Guard")
+encounter("Ghost")
+encounter("draugr")
+
+
+# ==========================================
+# ESCAPE THE CASTLE - CORRIDOR ENCOUNTER
+# ==========================================
+
+import random
+
+def encounter(creature):
+ 
+    
+    if creature == "Guard":
+        print("The guard draws their sword!")
+ 
+    elif creature == "Ghost":
+        print("A ghost floats towards you!")
+    elif creature == "draugr":
+        print("the draugr wakes up and slowly walks towards you")
+
+    print(f"A {creature} appears!!!")
+
+
+def corridor():
+    print("You walk down a dark castle corridor")
+    print("You hear a strange noise ahead...")
+
+    creatures = ["Guard", "Ghost", "Draugr"]
+
+    random_creature = random.choice(creatures)
+    encounter(random_creature)
+
+corridor()
