@@ -10,7 +10,7 @@ characterAge = int(input("How old are you, adventurer? "))
 #Set starting values
 health = 100
 gold = 20
-hasKey = False
+has_Key = False
  
 #Display the character profile
 print(f"\n=== CHARACTER PROFILE ===")
@@ -19,7 +19,7 @@ print(f"Age: {characterAge}")
 print(f"Class: {characterClass}")
 print(f"Health: {health}")
 print(f"Gold: {gold}")
-print(f"Has Key: {hasKey}")
+print(f"Has Key: {has_Key}")
  
 #Begin the story
 print(f"\n{playerName}, you wake up in a dimly lit room.")
@@ -28,32 +28,50 @@ print("Your adventure begins now. What will you do?")
 # # ==========================================
 # # ESCAPE THE CASTLE - SCENE 1: THE CELL
 # # ==========================================
- 
-# Introduce the scene to the player
-print("You wake up in a dimly lit room, as daylight filters through the bars, you see a door, a window and an old bed.")
-print("What do you want to investigate?")
+inventory = []
 
-# Ask the player what they want to investigate
-# .lower() converts their answer to lowercase
-choice = input("Enter your choice (door, window, bed): ").lower()
+def cell():
+    global has_Key
+    print("You wake up in a dimly lit room, as daylight filters through the bars, you see a door, a window and an old bed.")
+    print("What do you want to investigate?")
+    escaped = False
 
-# Check whether the player chose the door
-if choice == "door":
-    print("You approach the door and try the handle. It's locked.")
+    while escaped == False:
 
-# Check whether the player chose the window
-elif choice == "window":
-    print("You look through the window and see a beautiful garden outside. But it's too high to jump.")
-    print("The window is too small to climb through.")
+        # Ask the player what they want to investigate
+        # .lower() converts their answer to lowercase
+        choice = input("Enter your choice (door, window, bed): ").lower()
 
-# Check whether the player chose the bed
-elif choice == "bed":
-    print("You approach the bed and see a small Iron Key hidden under the pillow.")
+        # Check whether the player chose the door
+        if choice == "door":
+            print("You approach the door and try the handle. It's locked.")
+            has_Key = False
+            escaped = False
 
-else:
-    print("This item doesn't seem to hide anything.")
+        # Check whether the player chose the window
+        elif choice == "window":
+            print("You look through the window and see a beautiful garden outside. But it's too high to jump.")
+            print("The window is too small to climb through.")
+            has_Key = False
+            escaped = False
+
+        # Check whether the player chose the bed
+        elif choice == "bed":
+            print("You approach the bed and see a small Iron Key hidden under the pillow.")
+            inventory.append("Iron Key")
+            has_Key = True
+            escaped = True
+
+        else:
+            print("This item doesn't seem to hide anything.")
+
+    if escaped == True:
+        print("\nYou unlock the cell door.")
+        print("You step out into the corridor.")
+        print(f"Your inventory: {inventory}")
 
 
+cell()
 # # ==========================================
 # # ESCAPE THE CASTLE - SCENE 2: THE CORRIDOR
 # # ==========================================
@@ -88,29 +106,6 @@ print(f"\n Your inventory: {inventory}")
 # ESCAPE THE CASTLE - SCENE 3: THE ROOM
 # ==========================================
 
-def encounter(creature):
- 
-    print(f"\nA {creature} appears!")
- 
-    
-    if creature == "Guard":
-        print("The guard draws their sword!")
- 
-    elif creature == "Ghost":
-        print("The ghost floats towards you!")
-    elif creature == "draugr":
-        print("the draugr wakes up and slowly walks towards you")
-
-
-encounter("Guard")
-encounter("Ghost")
-encounter("draugr")
-
-
-# ==========================================
-# ESCAPE THE CASTLE - CORRIDOR ENCOUNTER
-# ==========================================
-
 import random
 
 def encounter(creature):
@@ -137,3 +132,8 @@ def corridor():
     encounter(random_creature)
 
 corridor()
+
+# ==========================================
+# ESCAPE THE CASTLE - CORRIDOR ENCOUNTER
+# ==========================================
+
