@@ -248,18 +248,20 @@ library()
 def castle_gate():
 
     print("\nYou reach the gates of the dark castle.")
-    print("You see a strange keypad beside the gate.")
+    print("You look and notice a strange keypad on the gate.")
+    print("you approach the keypad.")
     print("A message reads: 'Enter the password to escape.'")
 
     password = ""
 
     while password != "SHADOW":
 
-        password = input("\nEnter the password: ").upper()
+        password = input("\nEnter the password: ").lower()
 
         if password == "SHADOW":
             print("\nThe keypad glows brightly!")
             print("You hear a loud click as the gates unlock.")
+            print("The quickly run past the gates before they completely open.")
             print("\nYou have escaped the castle!")
             print("Congratulations, adventurer!")
             print(f"Well done, {playerName}!")
