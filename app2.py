@@ -5,6 +5,9 @@ from dotenv import load_dotenv
 from google import genai
 import random
 
+if "health" not in st.session_state:
+    st.session_state.health = 100
+
 load_dotenv(Path(__file__).resolve().with_name(".env"))
 api_key = os.getenv("GEMINI_API_KEY")
 client = genai.Client(api_key=api_key) if api_key else None
@@ -248,16 +251,19 @@ else:
     show_player_info()
     room = get_current_room()
 
-if st.session_state.health <= 0:
-    show_room("💀 Game Over", "Your strength gives out. The castle has claimed another victim.")
-    st.error("You did not escape the castle")
-    if st.button("🔄 Try Again"):
-        restart_game()
-    st.stop()
+    if st.session_state.health <= 0:
+        show_room(
+            "💀 Game Over",
+            "Your strength gives out. The castle has claimed another victim."
+        )
+        st.error("You did not escape the castle")
 
-    # ============================================================
+        if st.button("🔄 Try Again"):
+            restart_game()
+
+        st.stop()
+
     # ROOM 1 — CELL
-    # ============================================================
     if room == "cell":
         show_room(
             "🔒 The Cell",
